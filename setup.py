@@ -15,7 +15,19 @@ pybind11_path = pybind11.get_include()
 if sys.platform == 'win32':
     compile_args = ['/std:c++17', '/O2', '/DNDEBUG', '/D__AVX2__', '/D__SSE4_2__']
     link_args = []
+elif sys.platform == 'darwin':
+    # macOS: проверяем архитектуру
+    import platform
+    machine = platform.machine()
+    if machine == 'arm64':
+        # Apple Silicon (M1, M2, M3, etc.) - не поддерживает x86 SIMD инструкции
+        compile_args = ['-std=c++17', '-O3']
+    else:
+        # Intel Mac - поддерживает AVX2/SSE4.2
+        compile_args = ['-std=c++17', '-O3', '-mavx2', '-msse4.2']
+    link_args = []
 else:
+    # Linux и другие Unix-системы
     compile_args = ['-std=c++17', '-O3', '-march=native', '-mavx2', '-msse4.2']
     link_args = []
 
