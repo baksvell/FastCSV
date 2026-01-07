@@ -17,7 +17,7 @@ High-performance CSV parsing library for Python with SIMD optimizations (AVX2/SS
 ### From PyPI (Recommended)
 
 ```bash
-pip install fastcsv
+pip install pyfastcsv
 ```
 
 ### From Source
@@ -186,7 +186,7 @@ For comprehensive examples and use cases, see [EXAMPLES.md](EXAMPLES.md).
 - Solution: The native module wasn't built. Run `pip install -e .` to rebuild.
 
 **Problem: Performance is not as expected**
-- Solution: Ensure your CPU supports AVX2/SSE4.2. Check with: `python -c "import fastcsv; print(fastcsv.__version__)"`
+- Solution: Ensure your CPU supports AVX2/SSE4.2. Check with: `python -c "import fastcsv; print(fastcsv.__version__)"` after `pip install pyfastcsv`
 
 ## License
 

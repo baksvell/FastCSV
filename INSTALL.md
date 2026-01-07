@@ -16,7 +16,7 @@ Before installing FastCSV, ensure you have:
 If you have all prerequisites installed:
 
 ```bash
-pip install fastcsv
+pip install pyfastcsv
 ```
 
 ## Platform-Specific Instructions
@@ -36,7 +36,7 @@ pip install fastcsv
 
 3. **Install FastCSV:**
    ```bash
-   pip install fastcsv
+   pip install pyfastcsv
    ```
 
 #### Option 2: Using MinGW-w64
@@ -50,7 +50,7 @@ pip install fastcsv
 
 3. **Install FastCSV:**
    ```bash
-   pip install fastcsv
+   pip install pyfastcsv
    ```
 
 ### Linux
@@ -63,7 +63,7 @@ sudo apt-get update
 sudo apt-get install -y build-essential cmake python3-dev
 
 # Install FastCSV
-pip install fastcsv
+pip install pyfastcsv
 ```
 
 #### Fedora/RHEL/CentOS
@@ -73,7 +73,7 @@ pip install fastcsv
 sudo dnf install gcc-c++ cmake python3-devel
 
 # Install FastCSV
-pip install fastcsv
+pip install pyfastcsv
 ```
 
 #### Arch Linux
@@ -83,7 +83,7 @@ pip install fastcsv
 sudo pacman -S base-devel cmake python
 
 # Install FastCSV
-pip install fastcsv
+pip install pyfastcsv
 ```
 
 ### macOS
@@ -95,7 +95,7 @@ pip install fastcsv
 brew install cmake
 
 # Install FastCSV
-pip install fastcsv
+pip install pyfastcsv
 ```
 
 #### Using Xcode Command Line Tools
@@ -108,7 +108,7 @@ xcode-select --install
 # Download from https://cmake.org/download/
 
 # Install FastCSV
-pip install fastcsv
+pip install pyfastcsv
 ```
 
 ## Building from Source
@@ -127,7 +127,7 @@ pip install build wheel cmake pybind11 setuptools
 python -m build
 
 # Install the built package
-pip install dist/fastcsv-*.whl
+pip install dist/pyfastcsv-*.whl
 ```
 
 Or install in development mode:
@@ -218,7 +218,7 @@ venv\Scripts\activate
 source venv/bin/activate
 
 # Install FastCSV
-pip install fastcsv
+pip install pyfastcsv
 ```
 
 ## Docker Installation
@@ -235,7 +235,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Install FastCSV
-RUN pip install fastcsv
+RUN pip install pyfastcsv
 ```
 
 ## Getting Help

@@ -71,7 +71,7 @@
 
 4. **Проверьте установку из TestPyPI:**
    ```bash
-   pip install --index-url https://test.pypi.org/simple/ fastcsv
+   pip install --index-url https://test.pypi.org/simple/ pyfastcsv
    ```
 
 5. **Протестируйте установленный пакет:**
@@ -100,7 +100,7 @@
 
 4. **Проверьте установку из PyPI:**
    ```bash
-   pip install fastcsv
+   pip install pyfastcsv
    ```
 
 5. **Протестируйте установленный пакет:**
