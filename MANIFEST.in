@@ -1,0 +1,12 @@
+include CMakeLists.txt
+include include/**/*
+include src/**/*
+recursive-include fastcsv *.py
+
+
+
+
+
+
+
+

@@ -1,0 +1,81 @@
+name: Build Wheels
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  build-wheels:
+    name: Build wheels on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-20.04, ubuntu-22.04, windows-latest, macos-latest]
+        python-version: ["3.10", "3.11", "3.12"]
+        exclude:
+          - os: macos-latest
+            python-version: "3.10"
+    
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+      
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      
+      - name: Install CMake
+        uses: jwlawson/actions-setup-cmake@v1
+        with:
+          cmake-version: '3.20'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install build wheel pybind11 cmake
+      
+      - name: Build wheel
+        run: |
+          python -m build --wheel
+      
+      - name: Store wheel
+        uses: actions/upload-artifact@v3
+        with:
+          name: wheel-${{ matrix.os }}-py${{ matrix.python-version }}
+          path: dist/*.whl
+      
+      - name: Build source distribution
+        if: matrix.os == 'ubuntu-20.04' && matrix.python-version == '3.11'
+        run: |
+          python -m build --sdist
+      
+      - name: Store source distribution
+        if: matrix.os == 'ubuntu-20.04' && matrix.python-version == '3.11'
+        uses: actions/upload-artifact@v3
+        with:
+          name: sdist
+          path: dist/*.tar.gz
+
+  upload-pypi:
+    name: Upload to PyPI
+    needs: build-wheels
+    runs-on: ubuntu-latest
+    if: github.event_name == 'release'
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          pattern: wheel-*
+          merge-multiple: true
+      
+      - uses: actions/download-artifact@v3
+        with:
+          name: sdist
+          path: dist/
+      
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          password: ${{ secrets.PYPI_API_TOKEN }}

@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel", "cmake>=3.15", "pybind11>=2.10"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fastcsv"
+version = "0.2.0"
+description = "High-performance CSV parsing library for Python with SIMD optimizations"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "FastCSV Contributors", email = "patsi2@yandex.ru"}
+]
+keywords = ["csv", "parser", "performance", "simd", "avx2", "sse4", "fast", "optimized"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: C++",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Text Processing :: Markup",
+    "Operating System :: OS Independent",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/baksvell/FastCSV"
+Documentation = "https://github.com/baksvell/FastCSV#readme"
+Repository = "https://github.com/baksvell/FastCSV"
+Issues = "https://github.com/baksvell/FastCSV/issues"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-benchmark>=4.0",
+]
+
+[tool.setuptools]
+packages = ["fastcsv"]
+
+[tool.setuptools.package-data]
+fastcsv = ["*.so", "*.pyd", "*.dylib", "*.dll"]
+
