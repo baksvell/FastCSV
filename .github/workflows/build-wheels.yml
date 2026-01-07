@@ -37,9 +37,20 @@ jobs:
           python -m pip install --upgrade pip
           pip install build wheel pybind11 cmake
       
+      - name: Install auditwheel (Linux only)
+        if: matrix.os == 'ubuntu-22.04'
+        run: |
+          pip install auditwheel
+      
       - name: Build wheel
         run: |
           python -m build --wheel
+      
+      - name: Repair Linux wheels with auditwheel
+        if: matrix.os == 'ubuntu-22.04'
+        run: |
+          auditwheel repair dist/*.whl --plat manylinux2014_x86_64 -w dist/
+          rm dist/*-linux_x86_64.whl || true
       
       - name: Store wheel
         uses: actions/upload-artifact@v4
