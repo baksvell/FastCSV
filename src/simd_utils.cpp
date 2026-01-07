@@ -1,5 +1,6 @@
 #include "fastcsv/simd_utils.hpp"
 #include <algorithm>
+#include <cstdint>
 #include <cstring>
 #include <vector>
 
