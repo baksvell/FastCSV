@@ -1,10 +1,5 @@
 # FastCSV
 
-![Tests](https://github.com/baksvell/FastCSV/workflows/Tests/badge.svg)
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)
-![Version](https://img.shields.io/badge/version-0.2.0-green.svg)
-
 High-performance CSV parsing library for Python with SIMD optimizations (AVX2/SSE4.2).
 
 ## Features
@@ -21,17 +16,26 @@ High-performance CSV parsing library for Python with SIMD optimizations (AVX2/SS
 
 ### From PyPI (Recommended)
 
-pip install fastcsv### From Source
+```bash
+pip install fastcsv
+```
+
+### From Source
 
 See [INSTALL.md](INSTALL.md) for detailed installation instructions, including platform-specific requirements.
 
-**Quick start:**h
+**Quick start:**
+```bash
 git clone https://github.com/baksvell/FastCSV.git
 cd FastCSV
-pip install -e .## Quick Start
+pip install -e .
+```
+
+## Quick Start
 
 ### Basic Usage
 
+```python
 import fastcsv
 
 # Read CSV file
@@ -44,8 +48,12 @@ with open('data.csv', 'r') as f:
 with open('output.csv', 'w', newline='') as f:
     writer = fastcsv.writer(f)
     writer.writerow(['Name', 'Age', 'City'])
-    writer.writerow(['John', '30', 'New York'])### Dictionary Reader/Writer
+    writer.writerow(['John', '30', 'New York'])
+```
 
+### Dictionary Reader/Writer
+
+```python
 import fastcsv
 
 # Read as dictionary
@@ -59,15 +67,23 @@ with open('output.csv', 'w', newline='') as f:
     fieldnames = ['Name', 'Age', 'City']
     writer = fastcsv.DictWriter(f, fieldnames=fieldnames)
     writer.writeheader()
-    writer.writerow({'Name': 'John', 'Age': '30', 'City': 'New York'})### Memory-Mapped Reader (for large files)
-thon
+    writer.writerow({'Name': 'John', 'Age': '30', 'City': 'New York'})
+```
+
+### Memory-Mapped Reader (for large files)
+
+```python
 import fastcsv
 
 # Efficient reading of large files
 reader = fastcsv.mmap_reader('large_file.csv')
 for row in reader:
-    print(row)### Custom Dialects
+    print(row)
+```
 
+### Custom Dialects
+
+```python
 import fastcsv
 
 # Register custom dialect
@@ -77,8 +93,12 @@ fastcsv.register_dialect('semicolon', delimiter=';', quotechar='"')
 with open('data.csv', 'r') as f:
     reader = fastcsv.reader(f, dialect='semicolon')
     for row in reader:
-        print(row)### Automatic Format Detection
+        print(row)
+```
 
+### Automatic Format Detection
+
+```python
 import fastcsv
 
 # Detect CSV format
@@ -89,7 +109,10 @@ with open('data.csv', 'rb') as f:
     f.seek(0)
     reader = fastcsv.reader(f, dialect=dialect)
     for row in reader:
-        print(row)## Performance
+        print(row)
+```
+
+## Performance
 
 FastCSV is optimized for performance, especially with large files:
 
@@ -127,11 +150,15 @@ FastCSV provides full compatibility with Python's standard `csv` module:
 
 For very large files, use the memory-mapped reader:
 
+```python
 import fastcsv
 
 reader = fastcsv.mmap_reader('large_file.csv')
 for row in reader:
-    process(row)This uses memory-mapped I/O for efficient handling of files that don't fit in memory.
+    process(row)
+```
+
+This uses memory-mapped I/O for efficient handling of files that don't fit in memory.
 
 ## More Examples
 
