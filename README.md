@@ -1,5 +1,10 @@
 # FastCSV
 
+![Tests](https://github.com/baksvell/FastCSV/workflows/Tests/badge.svg)
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)
+![Version](https://img.shields.io/badge/version-0.2.0-green.svg)
+
 High-performance CSV parsing library for Python with SIMD optimizations (AVX2/SSE4.2).
 
 ## Features
