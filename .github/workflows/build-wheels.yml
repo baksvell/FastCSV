@@ -68,14 +68,23 @@ jobs:
         with:
           pattern: wheel-*
           merge-multiple: true
+          path: dist/
       
       - uses: actions/download-artifact@v4
         with:
           name: sdist
           path: dist/
+          if-no-files-found: ignore
+      
+      - name: List files to upload
+        run: |
+          echo "Files in dist/:"
+          ls -lah dist/ || echo "dist/ directory not found"
+          find dist/ -name "*.whl" -o -name "*.tar.gz" || echo "No files found"
       
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           password: ${{ secrets.PYPI_API_TOKEN }}
           skip-existing: true
+          packages-dir: dist/
